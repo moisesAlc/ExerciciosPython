@@ -3,21 +3,22 @@ import time
 from sys import platform
 
 
-class Bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
-
 def print_personalizado(texto, tipo):
-    if tipo == 'atenção':
-        print(Bcolors.FAIL + texto + Bcolors.ENDC)
+    dict_cores = {
+        "roxo": "\033[95m",
+        "azul": "\033[94m",
+        "ciano": "\033[96m",
+        "verde": "\033[92m",
+        "amarelo": "\033[93m",
+        "vermelho": "\033[91m",
+        "negrito": "\033[1m",
+        "sublinhado": "\033[4m",
+        "padrão": "\033[0m",
+    }
+    if tipo in dict_cores:
+        print(dict_cores[tipo] + texto + dict_cores["padrão"])
+    else:
+        print(texto)
 
 
 veiculos = (
@@ -151,4 +152,5 @@ def loop_inicial():
 
 
 if __name__ == '__main__':
-    loop_inicial()
+    #loop_inicial()
+    print_personalizado("a", 'b')
