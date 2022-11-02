@@ -85,13 +85,11 @@ def mostra_tela_inicial():
 
 
 def mostra_veiculo(veiculo):
-    print(
-        f'''
-=============================Veículo================================    
-    Nº {veiculo["numero"]} - {veiculo["nome"]}, {veiculo["marca"]}, {veiculo["ano"]} - {"Alugado" if veiculo["alugado"] else "Disponível para alugar"} 
-====================================================================
-''')
-
+    print()
+    texto = f'    Nº {veiculo["numero"]} - {veiculo["nome"]}, {veiculo["marca"]}, {veiculo["ano"]} - {"Alugado" if veiculo["alugado"] else "Disponível para alugar"}, cor: {veiculo["cor"]}    '
+    print('=' * len(texto))
+    print(texto)
+    print('=' * len(texto))
 
 def ver_veiculos():
     opcao = input(f'Você deseja ver (t)odos os {len(veiculos)} veículos ou um (v)eículo específico? ')
@@ -107,8 +105,9 @@ def ver_veiculos():
         1) Por número
         2) Por marca
         3) Por ano
-        4) Alugados
-        5) Não alugados
+        4) Por cor
+        5) Alugados
+        6) Não alugados
         
         '''))
 
@@ -124,7 +123,7 @@ def ver_veiculos():
             for veiculo in filter(lambda v: v["marca"] == veiculo["marca"], veiculos):
                 mostra_veiculo(veiculo)
             aguarda_tecla()
-
+        # @todo faltam outras opções
 
 def adicionar_veiculo():
     global veiculos
@@ -133,11 +132,13 @@ def adicionar_veiculo():
     nome_veiculo = input('Qual é o nome? ')
     marca_veiculo = input('Qual é a marca? ')
     ano_veiculo = int(input('Qual é o ano? '))
+    cor = input('Qual é a cor? ')
     veiculo = {
         "nome": nome_veiculo,
         "marca": marca_veiculo,
         "ano": ano_veiculo,
-        "alugado": False
+        "alugado": False,
+        "cor": cor
     }
     # @todo aqui fazer testes com os valores inseridos...
     veiculos = veiculos + (veiculo,)
@@ -148,7 +149,7 @@ def editar_veiculo():
     limpa_tela()
     qtd_veiculos = len(veiculos)
     numero_inserido = int(input('Qual o número do veículo que deseja editar? '))
-    if qtd_veiculos - 1 > numero_inserido or numero_inserido < 1:
+    if qtd_veiculos < numero_inserido or numero_inserido < 1:
         print_personalizado(f'Digite um número válido, de 1 a {qtd_veiculos}', 'vermelho')
     else:
         veiculo_a_editar = veiculos[numero_inserido - 1]
