@@ -10,4 +10,5 @@ Repositório com exercícios para meus alunos em disciplinas contendo Python. Os
 
  - main - branch atual
  - cli - programa com interface de linha de comando
+ - gui - programa baseado na cli, mas com interface gráfica
  - pythonorg - exercícios do site Python.org Brasil [https://wiki.python.org.br/ListaDeExercicios]
