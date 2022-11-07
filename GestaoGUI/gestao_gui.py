@@ -1,17 +1,21 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+from tkinter import messagebox
 
 
 def darkstyle(root):
     """ Return a dark style to the window"""
 
     style = ttk.Style(root)
-    #root.tk.call('source', 'azure dark/azure dark.tcl')
-    root.tk.call('source', 'scidthemes.0.9.3\scidthemes.tcl')
-    style.theme_use('scidgrey')
+    #root.tk.call('source', 'themes/azure dark/azure dark.tcl')
+    #root.tk.call('source', 'themes/scidthemes.0.9.3\scidthemes.tcl')
+    root.tk.call('source', 'themes/tkBreeze/breeze-dark/breeze-dark.tcl')
+    style.theme_use('breeze-dark')
     #style.configure("Accentbutton", selectbackground='white')
     return style
 
+def mostra_msg():
+    messagebox.showinfo('Título', 'Mensagem')
 
 def main_window():
     """ The window with the darkstyle """
@@ -23,8 +27,12 @@ def main_window():
 
     img = tk.PhotoImage(file="img/logo20dpi.png")
 
-    style = darkstyle(root)
     PADY = 15
+    FONT = 'Helvetica'
+
+    style = darkstyle(root)
+    style.configure('my.TButton', font=(FONT, 14))
+    
 
     frame_logo_welcome = ttk.Frame(root)
     logo = ttk.Label(
@@ -35,8 +43,7 @@ def main_window():
     welcome = ttk.Label(
         frame_logo_welcome,
         text="Gestão de Automóveis",
-        #compound="center",
-        font="arial 30",
+        font=(FONT, 30),
         anchor="e")
 
     logo.pack(side="left")
@@ -51,7 +58,7 @@ def main_window():
     login_label = ttk.Label(
         frame_authorization,
         text="Login",
-        font="arial 12"
+        font=(FONT, 12)
     )
 
     login_entry = ttk.Entry(
@@ -64,7 +71,7 @@ def main_window():
     password_label = ttk.Label(
         frame_authorization,
         text="Senha",
-        font="arial 12"
+        font=(FONT, 12)
     )
 
     password_entry = ttk.Entry(
@@ -87,12 +94,15 @@ def main_window():
         root,
         text="Login",
         width=20,
-        #style="Accentbutton"
+        style='my.TButton',
+        command=mostra_msg
     )
 
     button.pack(pady=PADY)
 
     root.mainloop()
+
+
 
 
 main_window()
