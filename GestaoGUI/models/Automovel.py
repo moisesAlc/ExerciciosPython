@@ -7,6 +7,12 @@ class Automovel:
         self.numero = 123,  # @todo
         self.alugado = False
 
+
+    def get_nome(self):
+        return self.nome[0]
+
+    def get_alugado(self):
+        return "Alugado" if self.alugado else "Disponível para alugar"
     def muda_cor(self, cor):
         self.cor = cor
 
